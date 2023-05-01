@@ -4,6 +4,8 @@ import base64
 import seaborn as sns
 import numpy as np
 import io
+import matplotlib.pyplot as plt
+
 
 st.title('NBA Player Stats Explorer')
 
