@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import base64
+import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 import io
 
@@ -51,4 +53,18 @@ def filedownload(df):
     return href
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
+
+# Heatmap
+if st.button('Intercorrelation Heatmap'):
+    st.header('Intercorrelation Matrix Heatmap')
+    df_selected_team.to_csv('basket.csv', index=False, encoding='utf-8')
+    df = pd.read_csv('basket.csv')
+
+    corr = df.corr()
+    mask = np.zeros_like(corr)
+    mask[np.triu_indices_from(mask)] = True
+    with sns.axes_style("white"):
+        f, ax = plt.subplots(figsize=(7, 5))
+        ax = sns.heatmap(corr, mask=mask, vmax=1, square=True)
+    st.pyplot()
 
