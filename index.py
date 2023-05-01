@@ -6,6 +6,7 @@ import numpy as np
 import io
 import matplotlib.pyplot as plt
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title('NBA Player Stats Explorer')
 
